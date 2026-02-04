@@ -24,7 +24,7 @@ export default function App(){
         const size = randomInt(18,54)
         const left = Math.random()*100
         const dur = (6 + Math.random()*8).toFixed(2)
-        const sway = (2 + Math.random()*4).toFixed(02)
+        const sway = (2 + Math.random()*4).toFixed(2)
         const opacity = (0.6 + Math.random()*0.5).toFixed(2)
         next.push({id,size,left,dur,sway,opacity})
       }
