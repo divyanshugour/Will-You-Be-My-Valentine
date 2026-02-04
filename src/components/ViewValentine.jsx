@@ -15,14 +15,14 @@ export default function ViewValentine({ valentineId }) {
   const noMessages = ['are you sure?', 'fir se soch lo', 'nahi nahi', 'sach mein?', 'pakka pakka?']
 
   const dayThemes = {
-    roseday: { bg: 'linear-gradient(135deg, #ff9ac8 0%, #ff6ea1 100%)', emoji: '🌹', name: 'Rose Day' },
-    proposeday: { bg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', emoji: '🌷', name: 'Propose Day' },
-    chocolateday: { bg: 'linear-gradient(135deg, #8B4513 0%, #D2691E 100%)', emoji: '🍫', name: 'Chocolate Day' },
-    teddyday: { bg: 'linear-gradient(135deg, #FFB6C1 0%, #FF69B4 100%)', emoji: '🧸', name: 'Teddy Day' },
-    promiseday: { bg: 'linear-gradient(135deg, #FF6B6B 0%, #FF8E72 100%)', emoji: '🤝', name: 'Promise Day' },
-    hugday: { bg: 'linear-gradient(135deg, #FFD93D 0%, #FFA502 100%)', emoji: '🤗', name: 'Hug Day' },
-    kissday: { bg: 'linear-gradient(135deg, #FF69B4 0%, #FF1493 100%)', emoji: '💋', name: 'Kiss Day' },
-    valentinesday: { bg: 'linear-gradient(135deg, #ff9ac8 0%, #ff6ea1 100%)', emoji: '💖', name: "Valentine's Day" }
+    roseday: { bg: 'linear-gradient(135deg, #ff9ac8 0%, #ff6ea1 100%)', emoji: '🌹', name: 'Rose Day', gif: 'https://media.giphy.com/media/xTiTnhbNQIBYwYw2gU/giphy.gif' },
+    proposeday: { bg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', emoji: '🌷', name: 'Propose Day', gif: 'https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif' },
+    chocolateday: { bg: 'linear-gradient(135deg, #8B4513 0%, #D2691E 100%)', emoji: '🍫', name: 'Chocolate Day', gif: 'https://media.giphy.com/media/l0HlNaQ9hnAXRmkCQ/giphy.gif' },
+    teddyday: { bg: 'linear-gradient(135deg, #FFB6C1 0%, #FF69B4 100%)', emoji: '🧸', name: 'Teddy Day', gif: 'https://media.giphy.com/media/l0HlSY9x8FZo0XO1i/giphy.gif' },
+    promiseday: { bg: 'linear-gradient(135deg, #FF6B6B 0%, #FF8E72 100%)', emoji: '🤝', name: 'Promise Day', gif: 'https://media.giphy.com/media/3o7TKU8G0fXMnOl0ly/giphy.gif' },
+    hugday: { bg: 'linear-gradient(135deg, #FFD93D 0%, #FFA502 100%)', emoji: '🤗', name: 'Hug Day', gif: 'https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif' },
+    kissday: { bg: 'linear-gradient(135deg, #FF69B4 0%, #FF1493 100%)', emoji: '💋', name: 'Kiss Day', gif: 'https://media.giphy.com/media/l0HlQaQ9hnAXRmkCQ/giphy.gif' },
+    valentinesday: { bg: 'linear-gradient(135deg, #ff9ac8 0%, #ff6ea1 100%)', emoji: '💖', name: "Valentine's Day", gif: 'https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif' }
   }
 
   const dayMessages = {
@@ -144,18 +144,18 @@ export default function ViewValentine({ valentineId }) {
 
         <h1 className="title"><strong>{valentine.message}</strong></h1>
 
-        {valentine.imageUrl && (
-          <img className="gif" src={valentine.imageUrl} alt="Valentine" />
+        {(valentine.imageUrl || theme.gif) && (
+          <img className="gif" src={valentine.imageUrl || theme.gif} alt="Valentine" />
         )}
 
         {valentine.day === 'valentinesday' && !answered && (
-          <div className="content-wrapper" style={{marginTop: '24px'}}>
-            <button ref={yesBtnRef} className="btn yes" onClick={() => setAnswered(true)} style={{transform: `scale(${yesScale})`}}>
-              Yes 💘
-            </button>
-            <button ref={noBtnRef} className="btn no">
-              {noMessages[noMsgIdx]}
-            </button>
+        <div style={{display: 'flex', gap: '12px', alignItems: 'center', justifyContent: 'center', marginTop: '24px'}}>
+          <button ref={yesBtnRef} className="btn yes" onClick={() => setAnswered(true)} style={{transform: `scale(${yesScale})`}}>
+            Yes 💘
+          </button>
+          <div style={{width: '220px', maxWidth: '45%', flexShrink: 0}}></div>
+          <button ref={noBtnRef} className="btn no">
+            {noMsgIdx === 0 ? 'No' : noMessages[noMsgIdx - 1]}
           </div>
         )}
 

@@ -5,7 +5,7 @@ import ViewValentine from './components/ViewValentine'
 
 function randomInt(min, max){ return Math.floor(min + Math.random()*(max-min+1)) }
 
-const noMessages = ['are you sure?', 'fir se soch lo', 'nahi nahi', 'sach mein?', 'pakka pakka?']
+const noMessages = ['Pakka?', 'Soch lia?', 'Mana mat kro na!', 'Achche bachche na nahi bolte.', 'Lock kar diya jaye?', 'Ek baar phir soch lo.', 'Final decision hai?', 'Mere liye bhi nahi?', 'Itni chhoti si toh baat hai.', 'Ek baar "haan" bol ke toh dekho.']
 
 export default function App(){
   const [hearts, setHearts] = useState([])
