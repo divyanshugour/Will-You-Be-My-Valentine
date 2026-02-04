@@ -25,4 +25,30 @@ body{background:radial-gradient(circle at 10% 10%, #ff9ac8 0%, #ff6ea1 30%, #7f0
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
 @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 
-@media (max-width:420px){.gif{width:160px}.content-wrapper{flex-direction:column}}
+/* Form Styles */
+.valentine-form{width:100%;max-width:500px;margin:0 auto}
+.valentine-form h2{margin:0 0 24px;font-size:1.6rem}
+.form-group{margin-bottom:16px;display:flex;flex-direction:column}
+.form-group label{font-weight:600;margin-bottom:8px;font-size:0.95rem}
+.form-group input,.form-group textarea,.form-group select{padding:10px;border-radius:8px;border:2px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.1);color:white;font-family:inherit;font-size:1rem;transition:border-color 0.2s}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,0.6)}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:rgba(255,255,255,0.6)}
+.form-group select option{color:#000}
+.form-group textarea{resize:vertical}
+.error-msg{color:#ff6b9d;font-weight:600;margin:12px 0;text-align:center}
+
+/* Share Link Styles */
+.share-link-container{width:100%;text-align:center}
+.share-link-container h2{margin:0 0 16px;font-size:1.4rem}
+.link-box{display:flex;gap:10px;margin:20px 0;align-items:stretch}
+.link-box input{flex:1;padding:10px;border-radius:8px;border:2px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.1);color:white;font-size:0.9rem}
+.share-buttons{display:flex;gap:12px;margin:20px 0;flex-wrap:wrap;justify-content:center}
+.share-btn{padding:10px 16px;border-radius:8px;border:0;background:rgba(255,255,255,0.2);color:white;cursor:pointer;font-weight:600;transition:background 0.2s}
+.share-btn:hover{background:rgba(255,255,255,0.3)}
+
+/* Valentine Content */
+.valentine-content{text-align:center;margin:20px 0}
+.day-badge{display:inline-block;background:rgba(255,255,255,0.2);padding:6px 12px;border-radius:20px;font-weight:600;margin-bottom:16px}
+.valentine-message{font-size:1.15rem;line-height:1.8;font-style:italic;white-space:pre-wrap;word-wrap:break-word}
+
+@media (max-width:420px){.gif{width:160px}.content-wrapper{flex-direction:column}.share-buttons{flex-direction:column}.link-box{flex-direction:column}}

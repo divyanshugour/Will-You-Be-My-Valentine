@@ -1,4 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
+import ValentineForm from './components/ValentineForm'
+import ShareLink from './components/ShareLink'
+import ViewValentine from './components/ViewValentine'
 
 function randomInt(min, max){ return Math.floor(min + Math.random()*(max-min+1)) }
 
@@ -9,9 +12,21 @@ export default function App(){
   const [yesScale, setYesScale] = useState(1)
   const [noMsgIdx, setNoMsgIdx] = useState(0)
   const [celebrateMode, setCelebrateMode] = useState(false)
+  const [mode, setMode] = useState('home')
+  const [generatedId, setGeneratedId] = useState(null)
+  const [viewingId, setViewingId] = useState(null)
   const heartsRef = useRef([])
   const noBtnRef = useRef(null)
   const yesBtnRef = useRef(null)
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const id = params.get('id')
+    if (id) {
+      setMode('view')
+      setViewingId(id)
+    }
+  }, [])
 
   useEffect(()=>{
     heartsRef.current = []
@@ -64,6 +79,27 @@ export default function App(){
     }
   }
 
+  function handleCreateValentine(){
+    setMode('form')
+    setCelebrateMode(false)
+    setYesScale(1)
+    setNoMsgIdx(0)
+  }
+
+  function handleLinkGenerated(id){
+    setGeneratedId(id)
+    setMode('share')
+  }
+
+  function handleBackToHome(){
+    setMode('home')
+    setCelebrateMode(false)
+    setYesScale(1)
+    setNoMsgIdx(0)
+    setGeneratedId(null)
+    window.history.replaceState({}, '', window.location.pathname)
+  }
+
   return (
     <div className="app-root">
       <div className="hearts-layer" aria-hidden="true">
@@ -75,31 +111,59 @@ export default function App(){
         ))}
       </div>
 
-      <main className="card">
-        <h1 className="title">
-          {celebrateMode ? '🎉 You Said YES! 🎉' : 'Will You Be My Valentine?'}
-        </h1>
-        
-        {!celebrateMode && (
-          <>
-            <div className="content-wrapper">
-              <button ref={yesBtnRef} className="btn yes" onClick={handleYes} style={{transform: `scale(${yesScale})`}}>Yes 💘</button>
-              <img className="gif" src="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" alt="Valentine GIF" />
-              <button ref={noBtnRef} className="btn no">
-                {noMessages[noMsgIdx]}
-              </button>
-            </div>
-          </>
-        )}
+      {mode === 'home' && (
+        <main className="card">
+          <h1 className="title">
+            {celebrateMode ? '🎉 You Said YES! 🎉' : 'Will You Be My Valentine?'}
+          </h1>
+          
+          {!celebrateMode && (
+            <>
+              <div className="content-wrapper">
+                <button ref={yesBtnRef} className="btn yes" onClick={handleYes} style={{transform: `scale(${yesScale})`}}>Yes 💘</button>
+                <img className="gif" src="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" alt="Valentine GIF" />
+                <button ref={noBtnRef} className="btn no">
+                  {noMessages[noMsgIdx]}
+                </button>
+              </div>
+            </>
+          )}
 
-        {celebrateMode && (
-          <div className="celebration-message">
-            <p>💕 I'm the happiest person right now! 💕</p>
-            <p className="celebration-emoji">💘✨🎊🎉💖🌹✨💘</p>
-            <p>Thank you for making me the luckiest! 🥰</p>
-          </div>
-        )}
-      </main>
+          {celebrateMode && (
+            <div className="celebration-message">
+              <p>💕 I'm the happiest person right now! 💕</p>
+              <p className="celebration-emoji">💘✨🎊🎉💖🌹✨💘</p>
+              <p>Thank you for making me the luckiest! 🥰</p>
+            </div>
+          )}
+
+          <button className="btn yes" onClick={handleCreateValentine} style={{marginTop: '24px', width: '100%'}}>
+            Create Your Own Valentine 💌
+          </button>
+        </main>
+      )}
+
+      {mode === 'form' && (
+        <main className="card">
+          <ValentineForm onLinkGenerated={handleLinkGenerated} />
+          <button className="btn no" onClick={handleBackToHome} style={{marginTop: '20px', width: '100%'}}>
+            Back
+          </button>
+        </main>
+      )}
+
+      {mode === 'share' && (
+        <main className="card">
+          <ShareLink valentineId={generatedId} onCreateNew={handleCreateValentine} />
+          <button className="btn no" onClick={handleBackToHome} style={{marginTop: '20px', width: '100%'}}>
+            Back
+          </button>
+        </main>
+      )}
+
+      {mode === 'view' && viewingId && (
+        <ViewValentine valentineId={viewingId} onBack={handleBackToHome} />
+      )}
     </div>
   )
 }
