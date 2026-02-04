@@ -2,8 +2,12 @@ import React, { useEffect, useRef, useState } from 'react'
 
 function randomInt(min, max){ return Math.floor(min + Math.random()*(max-min+1)) }
 
+const noMessages = ['are you sure?', 'fir se soch lo', 'nahi nahi', 'sach mein?', 'pakka pakka?']
+
 export default function App(){
   const [hearts, setHearts] = useState([])
+  const [yesScale, setYesScale] = useState(1)
+  const [noMsgIdx, setNoMsgIdx] = useState(0)
   const heartsRef = useRef([])
   const noBtnRef = useRef(null)
   const yesBtnRef = useRef(null)
@@ -38,35 +42,16 @@ export default function App(){
     return Math.random().toString(36).slice(2,9)
   }
 
-  function moveNo(immediate=false){
-    const no = noBtnRef.current
-    const yes = yesBtnRef.current
-    if(!no) return
-    const yesRect = yes ? yes.getBoundingClientRect() : {left:-9999,right:-9999,top:-9999,bottom:-9999}
-    const btnRect = no.getBoundingClientRect()
-    const btnWidth = btnRect.width || 80
-    const btnHeight = btnRect.height || 50
-    const padding = Math.max(btnWidth / 2, btnHeight / 2) + 20
-    const vw = window.innerWidth
-    const vh = window.innerHeight
-    let x,y
-    for(let tries=0; tries<30; tries++){
-      x = padding + Math.random()*(vw - padding*2 - btnWidth)
-      y = padding + Math.random()*(vh - padding*2 - btnHeight)
-      if(!(x > yesRect.left-80 && x < yesRect.right+80 && y > yesRect.top-80 && y < yesRect.bottom+80)) break
-    }
-    no.style.transition = immediate ? 'none' : 'left 0.28s ease, top 0.28s ease, transform 0.2s'
-    no.style.left = x + 'px'
-    no.style.top = y + 'px'
-    no.style.transform = 'translate(-50%,-50%) scale(1.04)'
-    setTimeout(()=> no.style.transform = 'translate(-50%,-50%) scale(1)', 220)
+  function handleNoClick(){
+    setYesScale(prev => prev + 0.2)
+    setNoMsgIdx(prev => (prev + 1) % noMessages.length)
   }
 
   useEffect(()=>{
     const no = noBtnRef.current
     if(!no) return
-    const handlers = ['mouseenter','mousedown','touchstart','focus','click']
-    const fn = (e)=>{ e.preventDefault && e.preventDefault(); moveNo() }
+    const handlers = ['mouseenter','click']
+    const fn = (e)=>{ e.preventDefault?.(); handleNoClick() }
     handlers.forEach(ev=> no.addEventListener(ev, fn))
     return ()=> handlers.forEach(ev=> no.removeEventListener(ev, fn))
   }, [])
@@ -95,9 +80,9 @@ export default function App(){
         <img className="gif" src="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" alt="Valentine GIF" />
 
         <div className="buttons" style={{position:'relative'}}>
-          <button ref={yesBtnRef} className="btn yes" onClick={handleYes}>Yes 💘</button>
-          <button ref={noBtnRef} className="btn no" style={{position:'absolute', left: '60%', top: '55%', transform:'translate(-50%,-50%)'}}>
-            No 😅
+          <button ref={yesBtnRef} className="btn yes" onClick={handleYes} style={{transform: `scale(${yesScale})`}}>Yes 💘</button>
+          <button ref={noBtnRef} className="btn no">
+            {noMessages[noMsgIdx]}
           </button>
         </div>
       </main>
