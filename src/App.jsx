@@ -8,6 +8,7 @@ export default function App(){
   const [hearts, setHearts] = useState([])
   const [yesScale, setYesScale] = useState(1)
   const [noMsgIdx, setNoMsgIdx] = useState(0)
+  const [celebrateMode, setCelebrateMode] = useState(false)
   const heartsRef = useRef([])
   const noBtnRef = useRef(null)
   const yesBtnRef = useRef(null)
@@ -57,10 +58,9 @@ export default function App(){
   }, [])
 
   function handleYes(){
-    spawnHearts(40)
-    if(yesBtnRef.current){
-      yesBtnRef.current.textContent = 'Yay! 💞'
-      yesBtnRef.current.disabled = true
+    setCelebrateMode(true)
+    for(let i = 0; i < 60; i++){
+      setTimeout(() => spawnHearts(8), i * 100)
     }
   }
 
@@ -76,15 +76,29 @@ export default function App(){
       </div>
 
       <main className="card">
-        <h1 className="title">Will You Be My Valentine?</h1>
+        <h1 className="title">
+          {celebrateMode ? '🎉 You Said YES! 🎉' : 'Will You Be My Valentine?'}
+        </h1>
         
-        <div className="content-wrapper">
-          <button ref={yesBtnRef} className="btn yes" onClick={handleYes} style={{transform: `scale(${yesScale})`}}>Yes 💘</button>
-          <img className="gif" src="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" alt="Valentine GIF" />
-          <button ref={noBtnRef} className="btn no">
-            {noMessages[noMsgIdx]}
-          </button>
-        </div>
+        {!celebrateMode && (
+          <>
+            <div className="content-wrapper">
+              <button ref={yesBtnRef} className="btn yes" onClick={handleYes} style={{transform: `scale(${yesScale})`}}>Yes 💘</button>
+              <img className="gif" src="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" alt="Valentine GIF" />
+              <button ref={noBtnRef} className="btn no">
+                {noMessages[noMsgIdx]}
+              </button>
+            </div>
+          </>
+        )}
+
+        {celebrateMode && (
+          <div className="celebration-message">
+            <p>💕 I'm the happiest person right now! 💕</p>
+            <p className="celebration-emoji">💘✨🎊🎉💖🌹✨💘</p>
+            <p>Thank you for making me the luckiest! 🥰</p>
+          </div>
+        )}
       </main>
     </div>
   )

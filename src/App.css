@@ -19,5 +19,10 @@ body{background:radial-gradient(circle at 10% 10%, #ff9ac8 0%, #ff6ea1 30%, #7f0
 .yes{background:linear-gradient(90deg,#ff7ab6,#ff5f7a);color:white}
 .no{background:linear-gradient(90deg,#ffd6a5,#ffb677);color:#3a1f00}
 .btn:focus{outline:3px solid rgba(255,255,255,0.18);outline-offset:2px}
+.celebration-message{font-size:1.3rem;line-height:2;font-weight:600;animation:pulse 1s ease-in-out infinite}
+.celebration-emoji{font-size:2.4rem;animation:bounce 1.2s ease-in-out infinite;white-space:nowrap}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 
 @media (max-width:420px){.gif{width:160px}.content-wrapper{flex-direction:column}}
