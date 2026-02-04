@@ -77,10 +77,10 @@ export default function App(){
 
       <main className="card">
         <h1 className="title">Will You Be My Valentine?</h1>
-        <img className="gif" src="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" alt="Valentine GIF" />
-
-        <div className="buttons" style={{position:'relative'}}>
+        
+        <div className="content-wrapper">
           <button ref={yesBtnRef} className="btn yes" onClick={handleYes} style={{transform: `scale(${yesScale})`}}>Yes 💘</button>
+          <img className="gif" src="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" alt="Valentine GIF" />
           <button ref={noBtnRef} className="btn no">
             {noMessages[noMsgIdx]}
           </button>

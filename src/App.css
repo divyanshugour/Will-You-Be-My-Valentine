@@ -11,7 +11,8 @@ body{background:radial-gradient(circle at 10% 10%, #ff9ac8 0%, #ff6ea1 30%, #7f0
 
 .card{position:relative;z-index:2;width:min(92vw,720px);max-width:720px;padding:36px;border-radius:18px;text-align:center;backdrop-filter:blur(6px) saturate(140%);background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));box-shadow:0 6px 30px rgba(0,0,0,0.25)}
 .title{font-size:clamp(1.6rem,4vw,2.8rem);margin:0 0 18px}
-.gif{width:220px;max-width:45%;border-radius:12px;display:block;margin:0 auto 18px}
+.content-wrapper{display:flex;gap:16px;align-items:center;justify-content:center}
+.gif{width:220px;max-width:45%;border-radius:12px;flex-shrink:0}
 .buttons{display:flex;gap:16px;align-items:center;justify-content:center}
 .btn{font-size:1.1rem;padding:12px 20px;border-radius:12px;border:0;cursor:pointer;transition:transform .18s ease, box-shadow .18s ease;box-shadow:0 6px 18px rgba(0,0,0,0.25)}
 .btn:active{transform:scale(.98)}
@@ -19,4 +20,4 @@ body{background:radial-gradient(circle at 10% 10%, #ff9ac8 0%, #ff6ea1 30%, #7f0
 .no{background:linear-gradient(90deg,#ffd6a5,#ffb677);color:#3a1f00}
 .btn:focus{outline:3px solid rgba(255,255,255,0.18);outline-offset:2px}
 
-@media (max-width:420px){.gif{width:160px}}
+@media (max-width:420px){.gif{width:160px}.content-wrapper{flex-direction:column}}
