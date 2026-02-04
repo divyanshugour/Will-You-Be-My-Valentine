@@ -45,7 +45,8 @@ export default function App(){
         const dur = (6 + Math.random()*8).toFixed(2)
         const sway = (2 + Math.random()*4).toFixed(2)
         const opacity = (0.6 + Math.random()*0.5).toFixed(2)
-        next.push({id,size,left,dur,sway,opacity})
+        const emoji = document?.body?.dataset?.heartEmoji || (Math.random()>.5? '💖':'❤️')
+        next.push({id,size,left,dur,sway,opacity, emoji})
       }
       return next.slice(-120)
     })
@@ -91,15 +92,6 @@ export default function App(){
     setMode('share')
   }
 
-  function handleBackToHome(){
-    setMode('home')
-    setCelebrateMode(false)
-    setYesScale(1)
-    setNoMsgIdx(0)
-    setGeneratedId(null)
-    window.history.replaceState({}, '', window.location.pathname)
-  }
-
   return (
     <div className="app-root">
       <div className="hearts-layer" aria-hidden="true">
@@ -107,7 +99,7 @@ export default function App(){
           <span key={h.id}
             className="heart"
             style={{left: `${h.left}vw`, fontSize: `${h.size}px`, animationDuration: `${h.dur}s, ${h.sway}s`, opacity: h.opacity}}
-          >{Math.random()>.5? '💖':'❤️'}</span>
+          >{h.emoji}</span>
         ))}
       </div>
 
@@ -152,14 +144,11 @@ export default function App(){
       {mode === 'share' && (
         <main className="card">
           <ShareLink valentineId={generatedId} onCreateNew={handleCreateValentine} />
-          <button className="btn no" onClick={handleBackToHome} style={{marginTop: '20px', width: '100%'}}>
-            Back
-          </button>
         </main>
       )}
 
       {mode === 'view' && viewingId && (
-        <ViewValentine valentineId={viewingId} onBack={handleBackToHome} />
+        <ViewValentine valentineId={viewingId} />
       )}
     </div>
   )

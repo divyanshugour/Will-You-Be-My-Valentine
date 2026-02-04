@@ -13,6 +13,7 @@ export default function ValentineForm({ onLinkGenerated }) {
   const [error, setError] = useState('')
 
   const days = [
+    { value: 'roseday', label: '🌹 Rose Day', color: 'roseday' },
     { value: 'proposeday', label: '🌷 Propose Day', color: 'proposeday' },
     { value: 'chocolateday', label: '🍫 Chocolate Day', color: 'chocolateday' },
     { value: 'teddyday', label: '🧸 Teddy Day', color: 'teddyday' },

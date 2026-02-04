@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { ref, get } from 'firebase/database'
 import { db } from '../firebase'
 
-export default function ViewValentine({ valentineId, onBack }) {
+export default function ViewValentine({ valentineId }) {
   const [valentine, setValentine] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -15,13 +15,25 @@ export default function ViewValentine({ valentineId, onBack }) {
   const noMessages = ['are you sure?', 'fir se soch lo', 'nahi nahi', 'sach mein?', 'pakka pakka?']
 
   const dayThemes = {
+    roseday: { bg: 'linear-gradient(135deg, #ff9ac8 0%, #ff6ea1 100%)', emoji: '🌹', name: 'Rose Day' },
     proposeday: { bg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', emoji: '🌷', name: 'Propose Day' },
     chocolateday: { bg: 'linear-gradient(135deg, #8B4513 0%, #D2691E 100%)', emoji: '🍫', name: 'Chocolate Day' },
     teddyday: { bg: 'linear-gradient(135deg, #FFB6C1 0%, #FF69B4 100%)', emoji: '🧸', name: 'Teddy Day' },
     promiseday: { bg: 'linear-gradient(135deg, #FF6B6B 0%, #FF8E72 100%)', emoji: '🤝', name: 'Promise Day' },
     hugday: { bg: 'linear-gradient(135deg, #FFD93D 0%, #FFA502 100%)', emoji: '🤗', name: 'Hug Day' },
     kissday: { bg: 'linear-gradient(135deg, #FF69B4 0%, #FF1493 100%)', emoji: '💋', name: 'Kiss Day' },
-    valentinesday: { bg: 'linear-gradient(135deg, #ff9ac8 0%, #ff6ea1 100%)', emoji: '💖', name: 'Valentine\'s Day' }
+    valentinesday: { bg: 'linear-gradient(135deg, #ff9ac8 0%, #ff6ea1 100%)', emoji: '💖', name: "Valentine's Day" }
+  }
+
+  const dayMessages = {
+    roseday: "Sending this red rose to you, [Name], because you bring fragrance and beauty into my life every single day.",
+    proposeday: "On this special day, I have just one question for you, [Name]: will you walk this path of life with me forever?",
+    chocolateday: "Life is sweeter with you in it, [Name], much sweeter than this chocolate I'm sending your way.",
+    teddyday: "Sending this teddy to you, [Name], so you have something soft to hug whenever I'm not there.",
+    promiseday: "I promise to stand by your side through all the highs and lows, [Name], today and always.",
+    hugday: "Sending you the biggest, warmest hug, [Name], to let you know how much you mean to me.",
+    kissday: "Sealed with a kiss for you, [Name]; sending all my love and a gentle kiss.",
+    valentinesday: "Happy Valentine's Day, [Name]; you are the reason I believe in love, and I am so incredibly lucky to call you mine."
   }
 
   useEffect(() => {
@@ -57,7 +69,25 @@ export default function ViewValentine({ valentineId, onBack }) {
     const fn = (e)=>{ e.preventDefault?.(); handleNoClick() }
     handlers.forEach(ev=> no.addEventListener(ev, fn))
     return ()=> handlers.forEach(ev=> no.removeEventListener(ev, fn))
-  }, [])
+  }, [noBtnRef.current])
+
+  useEffect(() => {
+    if (!valentine) return
+    const theme = dayThemes[valentine.day] || dayThemes.valentinesday
+    const previous = document.body.style.background
+    const previousEmoji = document.body.dataset.heartEmoji
+    document.body.style.background = theme.bg
+    // set dataset so background hearts use the day's emoji
+    document.body.dataset.heartEmoji = theme.emoji
+    return () => {
+      document.body.style.background = previous
+      if (previousEmoji) {
+        document.body.dataset.heartEmoji = previousEmoji
+      } else {
+        delete document.body.dataset.heartEmoji
+      }
+    }
+  }, [valentine])
 
   if (loading) {
     return (
@@ -69,46 +99,56 @@ export default function ViewValentine({ valentineId, onBack }) {
 
   if (error) {
     return (
-      <main className="card">
-        <h2>❌ {error}</h2>
-        <button className="btn yes" onClick={onBack} style={{marginTop: '20px'}}>
-          Create a Valentine
-        </button>
-      </main>
+      <div style={{height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+        <main className="card">
+          <h2>❌ {error}</h2>
+        </main>
+      </div>
     )
   }
 
   if (!valentine) {
     return (
-      <main className="card">
-        <h2>Valentine not found</h2>
-      </main>
+      <div style={{height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+        <main className="card">
+          <h2>Valentine not found</h2>
+        </main>
+      </div>
     )
   }
 
   const theme = dayThemes[valentine.day] || dayThemes.valentinesday
-  const pageStyle = {
-    background: theme.bg
+  const templateDayMessage = (dayMessages[valentine.day] || '')
+
+  function renderDayMessageWithHighlight(template, name){
+    if(!template) return null
+    const parts = template.split('[Name]')
+    return (
+      <strong>
+        {parts.map((part, idx) => (
+          <span key={idx}>
+            {part}
+            {idx === parts.length - 1 ? null : <span className="highlight-name">{name}</span>}
+          </span>
+        ))}
+      </strong>
+    )
   }
 
   return (
-    <div style={{height: '100vh', width: '100%', position: 'relative'}}>
-      <style>
-        {`body { background: ${theme.bg} !important; }`}
-      </style>
+    <div style={{height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
       <main className="card">
-        <h1 className="title">{theme.emoji} {valentine.name} Says: {theme.emoji}</h1>
+        {templateDayMessage && (
+          <p className="day-top-message"><span className="day-top-emoji">{theme.emoji}</span>{renderDayMessageWithHighlight(templateDayMessage, valentine.name)}</p>
+        )}
+
+        <h1 className="title"><strong>{valentine.message}</strong></h1>
 
         {valentine.imageUrl && (
           <img className="gif" src={valentine.imageUrl} alt="Valentine" />
         )}
 
-        <div className="valentine-content">
-          <p className="valentine-message">Will you be my Valentine?</p>
-          <p className="valentine-message" style={{marginTop: '20px', fontSize: '1rem'}}>{valentine.message}</p>
-        </div>
-
-        {!answered && (
+        {valentine.day === 'valentinesday' && !answered && (
           <div className="content-wrapper" style={{marginTop: '24px'}}>
             <button ref={yesBtnRef} className="btn yes" onClick={() => setAnswered(true)} style={{transform: `scale(${yesScale})`}}>
               Yes 💘
@@ -119,7 +159,7 @@ export default function ViewValentine({ valentineId, onBack }) {
           </div>
         )}
 
-        {answered && (
+        {valentine.day === 'valentinesday' && answered && (
           <div className="celebration-message">
             <p>🎉 Yay! You said YES! 🎉</p>
             <p className="celebration-emoji">💕✨🎊💖{theme.emoji}✨💕</p>

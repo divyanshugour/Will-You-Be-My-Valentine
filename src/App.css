@@ -9,8 +9,10 @@ body{background:radial-gradient(circle at 10% 10%, #ff9ac8 0%, #ff6ea1 30%, #7f0
 @keyframes floatUp{from{transform:translateY(110vh) rotate(0deg);opacity:0}10%{opacity:1}to{transform:translateY(-20vh) rotate(360deg);opacity:0}}
 @keyframes sway{0%{transform:translateX(0)}50%{transform:translateX(20px)}100%{transform:translateX(0)}}
 
-.card{position:relative;z-index:2;width:min(92vw,720px);max-width:720px;padding:36px;border-radius:18px;text-align:center;backdrop-filter:blur(6px) saturate(140%);background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));box-shadow:0 6px 30px rgba(0,0,0,0.25)}
+.card{position:relative;z-index:2;width:min(92vw,720px);max-width:720px;padding:36px;border-radius:18px;text-align:center;backdrop-filter:blur(6px) saturate(140%);background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));box-shadow:0 6px 30px rgba(0,0,0,0.25);font-weight:700}
 .title{font-size:clamp(1.6rem,4vw,2.8rem);margin:0 0 18px}
+.card{animation:cardEnter 360ms cubic-bezier(.22,.9,.32,1);transform-origin:center top}
+.title{letter-spacing:0.2px;font-weight:700}
 .content-wrapper{display:flex;gap:16px;align-items:center;justify-content:center}
 .gif{width:220px;max-width:45%;border-radius:12px;flex-shrink:0}
 .buttons{display:flex;gap:16px;align-items:center;justify-content:center}
@@ -24,6 +26,8 @@ body{background:radial-gradient(circle at 10% 10%, #ff9ac8 0%, #ff6ea1 30%, #7f0
 
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
 @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+@keyframes cardEnter{0%{opacity:0;transform:translateY(-10px) scale(0.995)}100%{opacity:1;transform:translateY(0) scale(1)}}
 
 /* Form Styles */
 .valentine-form{width:100%;max-width:500px;margin:0 auto}
@@ -50,5 +54,13 @@ body{background:radial-gradient(circle at 10% 10%, #ff9ac8 0%, #ff6ea1 30%, #7f0
 .valentine-content{text-align:center;margin:20px 0}
 .day-badge{display:inline-block;background:rgba(255,255,255,0.2);padding:6px 12px;border-radius:20px;font-weight:600;margin-bottom:16px}
 .valentine-message{font-size:1.15rem;line-height:1.8;font-style:italic;white-space:pre-wrap;word-wrap:break-word}
+
+/* Day top message styling */
+.day-top-message{font-size:1.05rem;font-style:italic;margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:10px}
+.day-top-emoji{display:inline-block;font-size:1.2rem;animation:floatEmoji 2s ease-in-out infinite}
+
+@keyframes floatEmoji{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+
+.highlight-name{display:inline-block;padding:2px 8px;border-radius:8px;background:rgba(255,255,255,0.08);color:#fff;margin:0 4px}
 
 @media (max-width:420px){.gif{width:160px}.content-wrapper{flex-direction:column}.share-buttons{flex-direction:column}.link-box{flex-direction:column}}
