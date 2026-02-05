@@ -68,7 +68,7 @@ export default function ValentineForm({ onLinkGenerated }) {
       </div>
 
       <div className="form-group">
-        <label>Valentine Day</label>
+        <label>Day</label>
         <select
           value={formData.day}
           onChange={(e) => setFormData({ ...formData, day: e.target.value })}

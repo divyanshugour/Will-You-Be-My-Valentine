@@ -15,14 +15,54 @@ export default function ViewValentine({ valentineId }) {
   const noMessages = ['No', 'Pakka?', 'Soch lia?', 'Mana mat kro na!', 'Achche bachche na nahi bolte.', 'Lock kar diya jaye?', 'Ek baar phir soch lo.', 'Final decision hai?', 'Mere liye bhi nahi?', 'Itni chhoti si toh baat hai.', 'Ek baar "haan" bol ke toh dekho.']
 
   const dayThemes = {
-    roseday: { bg: 'linear-gradient(135deg, #ff9ac8 0%, #ff6ea1 100%)', emoji: '🌹', name: 'Rose Day', gif: 'https://media.giphy.com/media/xTiTnhbNQIBYwYw2gU/giphy.gif' },
-    proposeday: { bg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', emoji: '🌷', name: 'Propose Day', gif: 'https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif' },
-    chocolateday: { bg: 'linear-gradient(135deg, #8B4513 0%, #D2691E 100%)', emoji: '🍫', name: 'Chocolate Day', gif: 'https://media.giphy.com/media/l0HlNaQ9hnAXRmkCQ/giphy.gif' },
-    teddyday: { bg: 'linear-gradient(135deg, #FFB6C1 0%, #FF69B4 100%)', emoji: '🧸', name: 'Teddy Day', gif: 'https://media.giphy.com/media/l0HlSY9x8FZo0XO1i/giphy.gif' },
-    promiseday: { bg: 'linear-gradient(135deg, #FF6B6B 0%, #FF8E72 100%)', emoji: '🤝', name: 'Promise Day', gif: 'https://media.giphy.com/media/3o7TKU8G0fXMnOl0ly/giphy.gif' },
-    hugday: { bg: 'linear-gradient(135deg, #FFD93D 0%, #FFA502 100%)', emoji: '🤗', name: 'Hug Day', gif: 'https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif' },
-    kissday: { bg: 'linear-gradient(135deg, #FF69B4 0%, #FF1493 100%)', emoji: '💋', name: 'Kiss Day', gif: 'https://media.giphy.com/media/l0HlQaQ9hnAXRmkCQ/giphy.gif' },
-    valentinesday: { bg: 'linear-gradient(135deg, #ff9ac8 0%, #ff6ea1 100%)', emoji: '💖', name: "Valentine's Day", gif: 'https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif' }
+    roseday: {
+      bg: 'linear-gradient(135deg, #ff9ac8 0%, #ff6ea1 100%)',
+      emoji: '🌹',
+      name: 'Rose Day',
+      gif: 'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTVnZGJwbDB5b2xwbjgzYnR4Njh6bjVxaWNpdG45emxya3Z2YXF4OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Vr9v03pX4cJmMx2yD8/giphy.gif'
+    },
+    proposeday: {
+      bg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      emoji: '🌷',
+      name: 'Propose Day',
+      gif: 'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExamZnMzcydnh3OHFqMzc1OHh3aWN1OWZwb3hpazY4OWQ2ZXVqc3RlMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/sj93cJMsnoQJkqdgYD/giphy.gif'
+    },
+    chocolateday: {
+      bg: 'linear-gradient(135deg, #8B4513 0%, #D2691E 100%)',
+      emoji: '🍫',
+      name: 'Chocolate Day',
+      gif: 'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExY24ycHQ4aTVkdW43a290Mm9qcTNlbXVydTc1ZjY1YjdwaXg4eWduaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/9NgiavRTlG7n0J0hVH/giphy.gif'
+    },
+    teddyday: {
+      bg: 'linear-gradient(135deg, #FFB6C1 0%, #FF69B4 100%)',
+      emoji: '🧸',
+      name: 'Teddy Day',
+      gif: 'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmFmOG5uM2U3MDc3cnVubXBhOW94bDV0dDRlcHVvZzhudGQ5ZjJzYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/NxC8VtyxqhMtpLoEEN/giphy.gif'
+    },
+    promiseday: {
+      bg: 'linear-gradient(135deg, #FF6B6B 0%, #FF8E72 100%)',
+      emoji: '🤝',
+      name: 'Promise Day',
+      gif: 'https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYXdpamtlazg4ejRqZ3RmbThxZ24zMXM3ZjA4cWRhZDZxaDV2NjZpYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DIsERFi2YjlmcnbKcK/giphy.gif'
+    },
+    hugday: {
+      bg: 'linear-gradient(135deg, #FFD93D 0%, #FFA502 100%)',
+      emoji: '🤗',
+      name: 'Hug Day',
+      gif: 'https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3hjNmcwOTVieXFnd3BtMm5kdTA3NGd0cW5iYXo0bHY2OXc3NzE4dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/uakdGGShmMS0KYfTgp/giphy.gif'
+    },
+    kissday: {
+      bg: 'linear-gradient(135deg, #FF69B4 0%, #FF1493 100%)',
+      emoji: '💋',
+      name: 'Kiss Day',
+      gif: 'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzJkd255cjkxeDJja2g0NWxuYnZyN3dwdDFuYWFodHprMXA2ZXNkciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/uaJW5HM7eWAvhoj0pZ/giphy.gif'
+    },
+    valentinesday: {
+      bg: 'linear-gradient(135deg, #ff9ac8 0%, #ff6ea1 100%)',
+      emoji: '💖',
+      name: "Valentine's Day",
+      gif: 'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExaW9mdHlneDVpN2xocnI2NGhneHFnNDQyZDF2eHd1MHZpaWcyNjNvbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RXoZQgt5la08uk5efU/giphy.gif'
+    }
   }
 
   const dayMessages = {
