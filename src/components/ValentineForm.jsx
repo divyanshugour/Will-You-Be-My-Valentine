@@ -60,7 +60,7 @@ export default function ValentineForm({ onLinkGenerated }) {
         <label>Your Love Name</label>
         <input
           type="text"
-          placeholder="Enter your name"
+          placeholder="Enter your love ❤ name"
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           required
