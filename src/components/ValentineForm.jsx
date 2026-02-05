@@ -57,7 +57,7 @@ export default function ValentineForm({ onLinkGenerated }) {
       <h2>Create Your Valentine 💌</h2>
 
       <div className="form-group">
-        <label>Your Name</label>
+        <label>Your Love Name</label>
         <input
           type="text"
           placeholder="Enter your name"
