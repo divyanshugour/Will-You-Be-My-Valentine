@@ -80,13 +80,16 @@ export default function ValentineForm({ onLinkGenerated }) {
       </div>
 
       <div className="form-group">
-        <label>Image/GIF URL (optional)</label>
+        <label>Image/GIF/Video URL (optional)</label>
         <input
           type="url"
-          placeholder="Paste image or GIF URL"
+          placeholder="e.g., https://media.giphy.com/media/example123/giphy.gif"
           value={formData.imageUrl}
           onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
         />
+        <small style={{fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)', marginTop: '4px', display: 'block'}}>
+          Paste a URL to an image, GIF, or video (mp4, webm) to display
+        </small>
       </div>
 
       <div className="form-group">
