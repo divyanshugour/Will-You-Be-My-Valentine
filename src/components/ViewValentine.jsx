@@ -227,12 +227,6 @@ export default function ViewValentine({ valentineId, onCreateOwn }) {
           </div>
         )}
         
-        {onCreateOwn && (
-          <button className="btn yes" onClick={onCreateOwn} style={{marginTop: '24px', width: '100%'}}>
-            Create Your Own Valentine 💌
-          </button>
-        )}
-        
         <footer style={{marginTop: '30px', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.2)', textAlign: 'center', fontSize: '14px', color: 'rgba(255,255,255,0.8)'}}>
           Made with ❤ by <a href="https://www.instagram.com/y0ur_wellwisher" target="_blank" rel="noopener noreferrer" style={{color: 'white', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '5px'}}>
             <svg style={{width: '18px', height: '18px', verticalAlign: 'middle'}} fill="currentColor" viewBox="0 0 24 24">
@@ -241,6 +235,12 @@ export default function ViewValentine({ valentineId, onCreateOwn }) {
             y0ur_wellwisher
           </a>
         </footer>
+        
+        {onCreateOwn && (
+          <button className="btn yes" onClick={onCreateOwn} style={{marginTop: '24px', width: '100%'}}>
+            Create Your Own Valentine 💌
+          </button>
+        )}
       </main>
     </div>
   )
