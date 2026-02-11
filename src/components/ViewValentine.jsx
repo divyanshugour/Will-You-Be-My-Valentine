@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { ref, get } from 'firebase/database'
 import { db } from '../firebase'
 
-export default function ViewValentine({ valentineId }) {
+export default function ViewValentine({ valentineId, onCreateOwn }) {
   const [valentine, setValentine] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -225,6 +225,12 @@ export default function ViewValentine({ valentineId }) {
             <p>🎉 Yay! You said YES! 🎉</p>
             <p className="celebration-emoji">💕✨🎊💖{theme.emoji}✨💕</p>
           </div>
+        )}
+        
+        {onCreateOwn && (
+          <button className="btn yes" onClick={onCreateOwn} style={{marginTop: '24px', width: '100%'}}>
+            Create Your Own Valentine 💌
+          </button>
         )}
         
         <footer style={{marginTop: '30px', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.2)', textAlign: 'center', fontSize: '14px', color: 'rgba(255,255,255,0.8)'}}>

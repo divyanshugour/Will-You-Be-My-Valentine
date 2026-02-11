@@ -148,7 +148,7 @@ export default function App(){
       )}
 
       {mode === 'view' && viewingId && (
-        <ViewValentine valentineId={viewingId} />
+        <ViewValentine valentineId={viewingId} onCreateOwn={handleCreateValentine} />
       )}
     </div>
   )

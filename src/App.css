@@ -1,5 +1,5 @@
 *{box-sizing:border-box}
-html,body,#root{height:100%;margin:0;font-family:'Dancing Script','Brush Script MT',cursive,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#fff}
+html,body,#root{height:100%;margin:0;font-family:'Lato',system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial,sans-serif;color:#fff}
 body{background:radial-gradient(circle at 10% 10%, #ff9ac8 0%, #ff6ea1 30%, #7f00ff 100%);overflow:auto}
 
 .app-root{height:100vh;width:100%;display:flex;align-items:center;justify-content:center;position:relative}
@@ -64,3 +64,18 @@ body{background:radial-gradient(circle at 10% 10%, #ff9ac8 0%, #ff6ea1 30%, #7f0
 .highlight-name{display:inline-block;padding:2px 8px;border-radius:8px;background:rgba(255,255,255,0.08);color:#fff;margin:0 4px}
 
 @media (max-width:420px){.gif{width:160px}.content-wrapper{flex-direction:column}.share-buttons{flex-direction:column}.link-box{flex-direction:column}}
+/* Dialog Styles */
+.dialog-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;z-index:1000;animation:fadeIn 0.3s ease}
+.dialog-box{background:linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));backdrop-filter:blur(10px);border-radius:16px;padding:30px;max-width:450px;width:90%;box-shadow:0 8px 32px rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.2);animation:slideUp 0.3s ease}
+.dialog-box h3{margin:0 0 16px;font-size:1.5rem;color:#fff}
+.dialog-box p{line-height:1.6;font-size:1rem;margin:0 0 24px;color:rgba(255,255,255,0.9)}
+.dialog-buttons{display:flex;gap:12px;flex-wrap:wrap}
+.btn-dialog{flex:1;padding:12px 20px;border-radius:10px;border:0;cursor:pointer;font-weight:600;font-size:1rem;transition:transform 0.2s ease, box-shadow 0.2s ease}
+.btn-dialog:active{transform:scale(0.98)}
+.btn-dialog.follow{background:linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);color:white;box-shadow:0 4px 15px rgba(131,58,180,0.4)}
+.btn-dialog.follow:hover{box-shadow:0 6px 20px rgba(131,58,180,0.6)}
+.btn-dialog.cancel{background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.3)}
+.btn-dialog.cancel:hover{background:rgba(255,255,255,0.25)}
+
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}

@@ -11,6 +11,7 @@ export default function ValentineForm({ onLinkGenerated }) {
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [showDialog, setShowDialog] = useState(true)
 
   const days = [
     { value: 'roseday', label: '🌹 Rose Day', color: 'roseday' },
@@ -53,7 +54,37 @@ export default function ValentineForm({ onLinkGenerated }) {
   }
 
   return (
-    <form className="valentine-form" onSubmit={handleSubmit}>
+    <>
+      {showDialog && (
+        <div className="dialog-overlay">
+          <div className="dialog-box">
+            <h3>Support This Project 💝</h3>
+            <p>
+              It's free for you, but you can help me by just following on Instagram. 
+              It will motivate me to create more such tools!
+            </p>
+            <div className="dialog-buttons">
+              <button 
+                className="btn-dialog follow"
+                onClick={() => {
+                  window.open('https://www.instagram.com/y0ur_wellwisher', '_blank')
+                  setShowDialog(false)
+                }}
+              >
+                Follow on Instagram 📸
+              </button>
+              <button 
+                className="btn-dialog cancel"
+                onClick={() => setShowDialog(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      
+      <form className="valentine-form" onSubmit={handleSubmit}>
       <h2>Create Your Valentine 💌</h2>
 
       <div className="form-group">
@@ -118,5 +149,6 @@ export default function ValentineForm({ onLinkGenerated }) {
         </a>
       </footer>
     </form>
+    </>
   )
 }
