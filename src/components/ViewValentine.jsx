@@ -237,7 +237,7 @@ export default function ViewValentine({ valentineId, onCreateOwn }) {
         </footer>
         
         {onCreateOwn && (
-          <button className="btn yes" onClick={onCreateOwn} style={{marginTop: '24px', width: '100%'}}>
+          <button className="btn yes" onClick={onCreateOwn} style={{marginTop: '24px', width: 'auto', padding: '10px 18px', fontSize: '0.95rem'}}>
             Create Your Own Valentine 💌
           </button>
         )}
